@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         facingLeft = new Vector2(-transform.localScale.x, transform.localScale.y);
+
     }
 
     // Update is called once per frame
@@ -49,9 +50,11 @@ public class PlayerController : MonoBehaviour
         horizontalInput *= Mathf.Pow(1f- fHorizontalDamping, Time.deltaTime * moveSpeed);
         if(horizontalInput > 0 && isFacingLeft){
             isFacingLeft = false;
+            isFacingRight = true;
             Flip();
         } else if(horizontalInput < 0 && isFacingRight){
             isFacingLeft = true;
+            isFacingRight = false;
             Flip();
         }
         rb.velocity = new Vector2(horizontalInput, rb.velocity.y);
